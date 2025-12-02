@@ -28,3 +28,14 @@ df = pd.DataFrame({
 
 df.to_csv("books_dataset.csv", index=False)
 print(df.head())
+
+# API DATA
+
+url = "https://dummyjson.com/products"
+res = requests.get(url)
+data = res.json()
+
+df = pd.DataFrame(data["products"])
+df.to_csv("products.csv", index=False)
+
+print(df.head())
