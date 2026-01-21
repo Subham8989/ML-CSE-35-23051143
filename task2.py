@@ -39,3 +39,35 @@ df = pd.DataFrame(data["products"])
 df.to_csv("products.csv", index=False)
 
 print(df.head())
+
+# COLLECTING DATA FROM CSV
+
+import csv
+
+with open("electric_vehicle_data.csv", "r") as fp: # file pointer
+  file = csv.reader(fp)
+  counter = 0
+  for lines in file:
+    if counter == 5:
+      break
+    print(lines)
+    counter += 1
+
+# COLLECTING DATA FROM JSON 
+
+import json
+
+with open("AQI.json", "r") as fp: # file pointer
+  aqi_data = json.load(fp)
+
+
+print(aqi_data)
+# counter = 0
+
+# for line in aqi_data: 
+#   if counter == 5:
+#     break
+  
+#   print(line)
+
+#   counter += 1
