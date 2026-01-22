@@ -44,7 +44,7 @@ print(df.head())
 
 import csv
 
-with open("electric_vehicle_data.csv", "r") as fp: # file pointer
+with open("data/employee_salary_10.csv", "r") as fp:
   file = csv.reader(fp)
   counter = 0
   for lines in file:
@@ -53,21 +53,20 @@ with open("electric_vehicle_data.csv", "r") as fp: # file pointer
     print(lines)
     counter += 1
 
-# COLLECTING DATA FROM JSON 
-
 import json
 
-with open("AQI.json", "r") as fp: # file pointer
+with open("data/sample.json", "r") as fp:
   aqi_data = json.load(fp)
 
+if isinstance(aqi_data, list) and len(aqi_data) > 0:
+  headers = aqi_data[0].keys()
 
-print(aqi_data)
-# counter = 0
+  with open("output.csv", "w", newline="", encoding="utf-8") as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=headers)
+    writer.writeheader()
+    writer.writerows(aqi_data)
 
-# for line in aqi_data: 
-#   if counter == 5:
-#     break
-  
-#   print(line)
+    print("AQI.json converted to AQI.csv successfully.")
 
-#   counter += 1
+else:
+    print("JSON format not supported (expected a list of dictionaries).")
